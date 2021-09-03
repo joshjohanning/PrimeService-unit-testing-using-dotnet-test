@@ -33,6 +33,7 @@ stages:
         projects: '**/*.sln'
         arguments: '--configuration $(buildConfiguration)'
 
+    # Add coverlet.collector nuget package to test project - 'dotnet add <TestProject.cspoj> package coverlet.collector'
     - task: DotNetCoreCLI@2
       displayName: dotnet test
       inputs:
@@ -46,7 +47,7 @@ stages:
       displayName: 'Publish code coverage'
       inputs:
         codeCoverageTool: Cobertura
-        summaryFileLocation: $(Agent.TempDirectory)/*/coverage.cobertura.xml
+        summaryFileLocation: $(Agent.TempDirectory)/*/coverage.cobertura.xml # using ** instead of * finds duplicate coverage files
     
     - ${{ if eq(parameters.DOTNET_PUBLISH, true) }}:
       - task: DotNetCoreCLI@2

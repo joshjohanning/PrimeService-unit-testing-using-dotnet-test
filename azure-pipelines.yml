@@ -53,7 +53,7 @@ stages:
       displayName: 'Publish code coverage'
       inputs:
         codeCoverageTool: Cobertura
-        summaryFileLocation: $(Build.SourcesDirectory)/**/coverage.cobertura.xml
+        summaryFileLocation: $(Build.SourcesDirectory)/**/Cobertura.xml
     
     - ${{ if eq(parameters.DOTNET_PUBLISH, true) }}:
       - task: DotNetCoreCLI@2

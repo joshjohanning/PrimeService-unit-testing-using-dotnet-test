@@ -1,3 +1,8 @@
+parameters:
+- name: DOTNET_PUBLISH
+  type: boolean
+  default: false
+
 trigger:
 - main
 
@@ -43,12 +48,12 @@ stages:
         codeCoverageTool: Cobertura
         summaryFileLocation: $(Agent.TempDirectory)/**/coverage.cobertura.xml
     
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet publish'
-      inputs:
-        command: 'publish'
-        projects: '**/*.sln'
-        arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-        publishWebProjects: True
-        zipAfterPublish: True
-        
+    - ${{ if eq(parameters.DOTNET_PUBLISH, true) }}:
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet publish'
+        inputs:
+          command: 'publish'
+          projects: '**/*.sln'
+          arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+          publishWebProjects: True
+          zipAfterPublish: True

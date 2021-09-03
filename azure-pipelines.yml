@@ -32,7 +32,7 @@ stages:
       displayName: dotnet test
       inputs:
         command: 'test'
-        projects: '${{ parameters.testProjectsPattern }}'
+        projects: '**/*.Tests.csproj'
         arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage"'
         publishTestResults: true
 
@@ -41,8 +41,8 @@ stages:
       displayName: 'Publish code coverage'
       inputs:
         codeCoverageTool: Cobertura
-        summaryFileLocation: ${{ parameters.codeCoverageFilePattern }}
-
+        summaryFileLocation: $(Agent.TempDirectory)/**/coverage.cobertura.xml
+    
     - task: DotNetCoreCLI@2
       displayName: 'dotnet publish'
       inputs:

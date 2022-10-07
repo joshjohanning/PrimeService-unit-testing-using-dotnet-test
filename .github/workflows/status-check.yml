@@ -74,4 +74,3 @@ jobs:
         output: |
           {"summary":""}
         output_text_description_file: code-coverage-results.md
-

@@ -39,7 +39,8 @@ jobs:
       uses: benc-uk/workflow-dispatch@v1
       with:
         workflow: new-workflow
-        token: ${{ github.token }}
-        inputs: '{ "ref": "${{ github.sha }}", "sha": "${{ github.sha }}"}'
+        # token: ${{ github.token }}
+        token: ${{ steps.get_installation_token.outputs.token }}
+        inputs: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
         # inputs: '{ "message": "blah blah", "debug": true }'
 

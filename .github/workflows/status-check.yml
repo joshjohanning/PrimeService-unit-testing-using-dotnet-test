@@ -31,8 +31,8 @@ jobs:
       with:
         token: ${{ steps.get_installation_token.outputs.token }}
         name: Test XYZ
-        # conclusion: ${{ job.status }}
-        conclusion: action_required
+        conclusion: ${{ job.status }}
+        # conclusion: action_required
         details_url: https://josh-ops.com/
         action_url: https://josh-ops.com/posts/github-code-coverage/
         output_text_description_file: code-coverage-results.md

@@ -23,7 +23,7 @@ jobs:
       if: always()
       with:
         token: ${{ steps.get_installation_token.outputs.token }}
-        name: Code Coverage
+        name: Second Job
         conclusion: ${{ job.status }}
         # conclusion: action_required
         details_url: https://josh-ops.com/posts/github-code-coverage/

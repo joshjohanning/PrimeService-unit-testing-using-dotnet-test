@@ -3,10 +3,6 @@ name: new-workflow
 on:
   workflow_dispatch:
     inputs:
-      check-id:
-        description: 'Check ID'
-        required: false
-        default: ''
       exit-code:
         description: 'Exit Code'
         required: true

@@ -2,6 +2,10 @@ name: new-workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      ref:
+        description: 'GitHub ref to create a status check for'
+        required: true
 
 jobs:
   build:
@@ -18,6 +22,7 @@ jobs:
     - uses: LouisBrunner/checks-action@v1.3.1
       if: always()
       with:
+        sha: ${{ github.event.inputs.ref }}
         token: ${{ steps.get_installation_token.outputs.token }}
         name: Code Coverage
         conclusion: ${{ job.status }}

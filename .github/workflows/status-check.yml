@@ -34,6 +34,6 @@ jobs:
         # conclusion: ${{ job.status }}
         conclusion: action_required
         details_url: https://josh-ops.com/
-        actions_url: https://josh-ops.com/posts/github-code-coverage/
+        action_url: https://josh-ops.com/posts/github-code-coverage/
         output_text_description_file: code-coverage-results.md
 

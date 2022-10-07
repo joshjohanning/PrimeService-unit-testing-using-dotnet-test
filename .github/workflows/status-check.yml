@@ -51,3 +51,4 @@ jobs:
             workflow_id: 'new-workflow.yml',
             ref: '${{ github.head_ref }}',
           })
+

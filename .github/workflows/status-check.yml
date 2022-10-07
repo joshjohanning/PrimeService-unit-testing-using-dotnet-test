@@ -17,7 +17,9 @@ jobs:
       run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
       
     - name: Create output var for results
-      run: echo "markdown=$(cat code-coverage-results.md)" >> $GITHUB_ENV
+      run: | 
+        var="$(cat code-coverage-results.md)"
+        echo "markdown=$var" >> $GITHUB_ENV
       
     - uses: tibdex/github-app-token@v1
       id: get_installation_token

@@ -35,12 +35,13 @@ jobs:
     #       {"summary":""}
     #     output_text_description_file: code-coverage-results.md
 
-    - name: Invoke workflow with inputs
-      uses: benc-uk/workflow-dispatch@v1
+    - name: Trigger Workflow
+      uses: actions/github-script@v6
       with:
-        workflow: new-workflow
-        # token: ${{ github.token }}
-        token: ${{ steps.get_installation_token.outputs.token }}
-        inputs: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
-        # inputs: '{ "message": "blah blah", "debug": true }'
-
+        script: |
+          github.rest.actions.createWorkflowDispatch({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            workflow_id: 'new-workflow.yml',
+            ref: 'main',
+          })

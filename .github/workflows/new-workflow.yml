@@ -22,7 +22,8 @@ jobs:
     - uses: LouisBrunner/checks-action@v1.3.1
       if: always()
       with:
-        token: ${{ steps.get_installation_token.outputs.token }}
+        # token: ${{ steps.get_installation_token.outputs.token }}
+        token: ${{ github.token }}
         name: Second Job
         conclusion: ${{ job.status }}
         # conclusion: action_required

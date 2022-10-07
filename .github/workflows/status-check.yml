@@ -29,7 +29,7 @@ jobs:
         name: Code Coverage
         conclusion: ${{ job.status }}
         # conclusion: action_required
-        details_url: https://josh-ops.com/
+        details_url: https://josh-ops.com/posts/github-code-coverage/
         action_url: https://josh-ops.com/posts/github-code-coverage/
         output: |
           {"summary":""}

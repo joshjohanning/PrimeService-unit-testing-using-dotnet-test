@@ -49,5 +49,5 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             workflow_id: 'new-workflow.yml',
-            ref: '${{ github.event.pull_request.head.sha }}',
+            ref: '${{ github.head_ref }}',
           })

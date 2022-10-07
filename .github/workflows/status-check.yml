@@ -16,11 +16,6 @@ jobs:
     - name: Write to Job Summary
       run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
       
-    - name: Create output var for results
-      run: | 
-        var="$(cat code-coverage-results.md)"
-        echo "markdown=100% code coverage" >> $GITHUB_ENV
-      
     - uses: tibdex/github-app-token@v1
       id: get_installation_token
       with: 
@@ -28,9 +23,10 @@ jobs:
         private_key: ${{ secrets.PRIVATE_KEY }}
 
     - uses: LouisBrunner/checks-action@v1.3.1
+      if: always()
       with:
         token: ${{ steps.get_installation_token.outputs.token }}
-        name: Test XYZ
+        name: Code Coverage
         conclusion: ${{ job.status }}
         # conclusion: action_required
         details_url: https://josh-ops.com/
@@ -38,4 +34,3 @@ jobs:
         output: |
           {"summary":""}
         output_text_description_file: code-coverage-results.md
-

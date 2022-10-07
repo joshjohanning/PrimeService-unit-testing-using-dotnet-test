@@ -40,7 +40,12 @@ jobs:
     #       {"summary":""}
     #     output_text_description_file: code-coverage-results.md
 
-    - run: echo "${{ github.event.pull_request.head.sha }}"
+    - uses: LouisBrunner/checks-action@v1.3.1
+      with:
+        token: ${{ github.token }}
+        name: Second Job
+        conclusion: queued
+
     - name: Trigger Workflow
       uses: actions/github-script@v6
       with:
@@ -50,5 +55,8 @@ jobs:
             repo: context.repo.repo,
             workflow_id: 'new-workflow.yml',
             ref: '${{ github.head_ref }}',
+            inputs: {
+              "check-id": "${{ steps.test.outputs.summary }}"
+            }
           })
 

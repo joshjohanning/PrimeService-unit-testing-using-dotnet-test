@@ -2,6 +2,11 @@ name: new-workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      check-id:
+        description: 'Check ID'
+        required: false
+        default: ''
 
 jobs:
   build:
@@ -25,6 +30,7 @@ jobs:
         # token: ${{ steps.get_installation_token.outputs.token }}
         token: ${{ github.token }}
         name: Second Job
+        check_id: ${{ github.event.inputs.check-id }}
         conclusion: ${{ job.status }}
         # conclusion: action_required
         details_url: https://josh-ops.com/posts/github-code-coverage/

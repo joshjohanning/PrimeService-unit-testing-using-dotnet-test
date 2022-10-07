@@ -56,7 +56,7 @@ jobs:
             workflow_id: 'new-workflow.yml',
             ref: '${{ github.head_ref }}',
             inputs: {
-              "check-id": "${{ steps.test.outputs.summary }}"
+              "check-id": "${{ steps.test.outputs.summary }},
+              "exit-code": "1"
             }
           })
-

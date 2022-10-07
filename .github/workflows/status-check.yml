@@ -40,6 +40,7 @@ jobs:
     #       {"summary":""}
     #     output_text_description_file: code-coverage-results.md
 
+    - run: echo "${{ github.event.pull_request.head.sha }}"
     - name: Trigger Workflow
       uses: actions/github-script@v6
       with:
@@ -48,5 +49,5 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             workflow_id: 'new-workflow.yml',
-            ref: '${{ github.sha }}',
+            ref: '${{ github.event.pull_request.head.sha }}',
           })

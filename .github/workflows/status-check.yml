@@ -16,21 +16,21 @@ jobs:
     - name: Write to Job Summary
       run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
       
-    - uses: tibdex/github-app-token@v1
-      id: get_installation_token
-      with: 
-        app_id: 170284
-        private_key: ${{ secrets.PRIVATE_KEY }}
+    # - uses: tibdex/github-app-token@v1
+    #   id: get_installation_token
+    #   with: 
+    #     app_id: 170284
+    #     private_key: ${{ secrets.PRIVATE_KEY }}
 
-    - uses: LouisBrunner/checks-action@v1.3.1
-      if: always()
-      with:
-        token: ${{ steps.get_installation_token.outputs.token }}
-        name: Code Coverage
-        conclusion: ${{ job.status }}
-        # conclusion: action_required
-        details_url: https://josh-ops.com/posts/github-code-coverage/
-        action_url: https://josh-ops.com/posts/github-code-coverage/
-        output: |
-          {"summary":""}
-        output_text_description_file: code-coverage-results.md
+    # - uses: LouisBrunner/checks-action@v1.3.1
+    #   if: always()
+    #   with:
+    #     token: ${{ steps.get_installation_token.outputs.token }}
+    #     name: Code Coverage
+    #     conclusion: ${{ job.status }}
+    #     # conclusion: action_required
+    #     details_url: https://josh-ops.com/posts/github-code-coverage/
+    #     action_url: https://josh-ops.com/posts/github-code-coverage/
+    #     output: |
+    #       {"summary":""}
+    #     output_text_description_file: code-coverage-results.md

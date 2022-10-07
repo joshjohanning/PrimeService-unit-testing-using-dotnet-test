@@ -43,5 +43,5 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             workflow_id: 'new-workflow.yml',
-            ref: 'main',
+            ref: '${{ github.ref }}',
           })

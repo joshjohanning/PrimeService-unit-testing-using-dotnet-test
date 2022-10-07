@@ -1,6 +1,6 @@
 # forked from
 
-Forked from: https://github.com/dotnet/samples/tree/6627c7fbfb70a97362e83544b29dd3fab0bd9a5f
+Forked from: https://github.com/dotnet/samples/tree/6627c7fbfb70a97362e83544b29dd3fab0bd9a5f/core/getting-started/unit-testing-using-dotnet-test
 
 # Unit testing using dotnet test sample
 

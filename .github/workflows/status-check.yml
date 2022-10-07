@@ -41,6 +41,7 @@ jobs:
     #     output_text_description_file: code-coverage-results.md
 
     - uses: LouisBrunner/checks-action@v1.3.1
+      id: check
       with:
         token: ${{ github.token }}
         name: Second Job
@@ -56,7 +57,22 @@ jobs:
             workflow_id: 'new-workflow.yml',
             ref: '${{ github.head_ref }}',
             inputs: {
-              "check-id": "${{ steps.test.outputs.summary }},
+              "check-id": "${{ steps.check.outputs.check_id }}",
               "exit-code": "1"
             }
           })
+
+    - uses: LouisBrunner/checks-action@v1.3.1
+      if: failure()
+      with:
+        # token: ${{ steps.get_installation_token.outputs.token }}
+        token: ${{ github.token }}
+        name: Second Job
+        check_id: ${{ steps.check.outputs.check_id }}
+        conclusion: ${{ job.status }}
+        # conclusion: action_required
+        details_url: https://josh-ops.com/posts/github-code-coverage/
+        action_url: https://josh-ops.com/posts/github-code-coverage/
+        output: |
+          {"summary":""}
+        output_text_description_file: code-coverage-results.md

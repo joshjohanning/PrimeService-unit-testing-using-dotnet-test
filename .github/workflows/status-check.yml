@@ -35,5 +35,7 @@ jobs:
         # conclusion: action_required
         details_url: https://josh-ops.com/
         action_url: https://josh-ops.com/posts/github-code-coverage/
+        output: |
+          {"summary":""}
         output_text_description_file: code-coverage-results.md
 

@@ -41,3 +41,4 @@ jobs:
         workflow: new-workflow
         token: ${{ github.token }}
         # inputs: '{ "message": "blah blah", "debug": true }'
+

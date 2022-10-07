@@ -33,4 +33,4 @@ jobs:
         name: Test XYZ
         conclusion: ${{ job.status }}
         output: |
-          {"summary":${{ env.markdown }}}
+          {"summary":"${{ env.markdown }}"}

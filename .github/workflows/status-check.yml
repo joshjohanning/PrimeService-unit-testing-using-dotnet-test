@@ -21,11 +21,11 @@ jobs:
     # - name: Write to Job Summary
     #   run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
       
-    # - uses: tibdex/github-app-token@v1
-    #   id: get_installation_token
-    #   with: 
-    #     app_id: 170284
-    #     private_key: ${{ secrets.PRIVATE_KEY }}
+    - uses: tibdex/github-app-token@v1
+      id: get_installation_token
+      with: 
+        app_id: 170284
+        private_key: ${{ secrets.PRIVATE_KEY }}
 
     # - uses: LouisBrunner/checks-action@v1.3.1
     #   if: always()
@@ -43,7 +43,8 @@ jobs:
     - uses: LouisBrunner/checks-action@v1.3.1
       id: check
       with:
-        token: ${{ github.token }}
+        token: ${{ steps.get_installation_token.outputs.token }}
+        # token: ${{ github.token }}
         name: Second Job
         status: in_progress
 
@@ -64,8 +65,8 @@ jobs:
     - uses: LouisBrunner/checks-action@v1.3.1
       if: failure()
       with:
-        # token: ${{ steps.get_installation_token.outputs.token }}
-        token: ${{ github.token }}
+        token: ${{ steps.get_installation_token.outputs.token }}
+        # token: ${{ github.token }}
         name: Second Job
         conclusion: ${{ job.status }}
         # conclusion: action_required

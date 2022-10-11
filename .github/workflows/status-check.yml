@@ -58,7 +58,7 @@ jobs:
             workflow_id: 'new-workflow.yml',
             ref: '${{ github.head_ref }}',
             inputs: {
-              "exit-code": "1"
+              "exit-code": "0"
             }
           })
 

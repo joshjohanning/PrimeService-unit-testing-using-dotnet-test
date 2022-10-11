@@ -43,8 +43,8 @@ jobs:
     - uses: LouisBrunner/checks-action@v1.3.1
       id: check
       with:
-        token: ${{ steps.get_installation_token.outputs.token }}
-        # token: ${{ github.token }}
+        # token: ${{ steps.get_installation_token.outputs.token }}
+        token: ${{ github.token }}
         name: Second Job
         status: in_progress
 
@@ -65,8 +65,8 @@ jobs:
     - uses: LouisBrunner/checks-action@v1.3.1
       if: failure()
       with:
-        token: ${{ steps.get_installation_token.outputs.token }}
-        # token: ${{ github.token }}
+        # token: ${{ steps.get_installation_token.outputs.token }}
+        token: ${{ github.token }}
         name: Second Job
         conclusion: ${{ job.status }}
         # conclusion: action_required

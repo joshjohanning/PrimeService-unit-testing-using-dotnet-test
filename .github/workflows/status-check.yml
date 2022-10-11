@@ -47,19 +47,27 @@ jobs:
         name: Second Job
         status: in_progress
 
-    - name: Trigger Workflow
-      uses: actions/github-script@v6
+    # - name: Trigger Workflow
+    #   uses: actions/github-script@v6
+    #   with:
+    #     script: |
+    #       github.rest.actions.createWorkflowDispatch({
+    #         owner: context.repo.owner,
+    #         repo: context.repo.repo,
+    #         workflow_id: 'new-workflow.yml',
+    #         ref: '${{ github.head_ref }}',
+    #         inputs: {
+    #           "exit-code": "1"
+    #         }
+    #       })
+
+    - name: Invoke workflow with inputs
+      uses: benc-uk/workflow-dispatch@v1
       with:
-        script: |
-          github.rest.actions.createWorkflowDispatch({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            workflow_id: 'new-workflow.yml',
-            ref: '${{ github.head_ref }}',
-            inputs: {
-              "exit-code": "1"
-            }
-          })
+        workflow: new-workflow
+        token: ${{ github.token }}
+        inputs: '{ "exit-code": "1" }'
+        ref: ${{ github.head_ref }}
 
     - uses: LouisBrunner/checks-action@v1.3.1
       if: failure()

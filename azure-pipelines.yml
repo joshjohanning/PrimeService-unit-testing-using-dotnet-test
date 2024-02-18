@@ -58,7 +58,7 @@ stages:
     - task: PublishCodeCoverageResults@2
       displayName: 'Publish code coverage'
       inputs:
-        summaryFileLocation: $(Build.SourcesDirectory)/CodeCoverage/*/coverage.cobertura.xml # using ** instead of * finds duplicate coverage files
+        summaryFileLocation: $(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml
 
     - ${{ if eq(parameters.DOTNET_PUBLISH, true) }}:
       - task: DotNetCoreCLI@2

@@ -46,10 +46,12 @@ stages:
     # First install the tool on the machine, then run it
     - script: |
         dotnet tool install -g dotnet-reportgenerator-globaltool --version 4.6.1
-        # using ** instead of * finds duplicate coverage files
+        # using ** instead of * finds duplicate coverage files (which is not necessary in my case since I just have 1)
         reportgenerator -reports:$(Agent.TempDirectory)/*/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage -reporttypes:'HtmlInline_AzurePipelines;Cobertura'
+        # IMPORTANT - set `disable.coverage.autogenerate` to true if you want to use older reportgenerator version
+        echo "##vso[task.setvariable variable=disable.coverage.autogenerate;]true"
       displayName: Create code coverage report
-      
+
     # Publish code coverage report to the pipeline
     - task: PublishCodeCoverageResults@1
       displayName: 'Publish code coverage'

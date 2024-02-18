@@ -54,6 +54,7 @@ stages:
       inputs:
         codeCoverageTool: Cobertura
         summaryFileLocation: $(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml
+        reportDirectory: $(Build.SourcesDirectory)/CodeCoverage
 
     - ${{ if eq(parameters.DOTNET_PUBLISH, true) }}:
       - task: DotNetCoreCLI@2

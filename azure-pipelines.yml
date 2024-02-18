@@ -43,12 +43,17 @@ stages:
         publishTestResults: true
 
     # Publish code coverage report to the pipeline
-    - task: PublishCodeCoverageResults@1
+    # - task: PublishCodeCoverageResults@1 # using @v2 instead
+    #   displayName: 'Publish code coverage'
+    #   inputs:
+    #     codeCoverageTool: Cobertura
+    #     summaryFileLocation: $(Agent.TempDirectory)/*/coverage.cobertura.xml # using ** instead of * finds duplicate coverage files
+
+    - task: PublishCodeCoverageResults@2
       displayName: 'Publish code coverage'
       inputs:
-        codeCoverageTool: Cobertura
         summaryFileLocation: $(Agent.TempDirectory)/*/coverage.cobertura.xml # using ** instead of * finds duplicate coverage files
-    
+
     - ${{ if eq(parameters.DOTNET_PUBLISH, true) }}:
       - task: DotNetCoreCLI@2
         displayName: 'dotnet publish'

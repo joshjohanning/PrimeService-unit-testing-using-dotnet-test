@@ -49,15 +49,10 @@ stages:
       displayName: Create code coverage report
       
     # Publish code coverage report to the pipeline
-    # - task: PublishCodeCoverageResults@1 # using @v2 instead
-    #   displayName: 'Publish code coverage'
-    #   inputs:
-    #     codeCoverageTool: Cobertura
-    #     summaryFileLocation: $(Agent.TempDirectory)/*/coverage.cobertura.xml # using ** instead of * finds duplicate coverage files
-
-    - task: PublishCodeCoverageResults@2
+    - task: PublishCodeCoverageResults@1
       displayName: 'Publish code coverage'
       inputs:
+        codeCoverageTool: Cobertura
         summaryFileLocation: $(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml
 
     - ${{ if eq(parameters.DOTNET_PUBLISH, true) }}:

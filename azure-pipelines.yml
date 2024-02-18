@@ -42,6 +42,12 @@ stages:
         arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage"'
         publishTestResults: true
 
+    # First install the tool on the machine, then run it
+    - script: |
+        dotnet tool install -g dotnet-reportgenerator-globaltool --version 4.6.1
+        reportgenerator -reports:$(Agent.WorkFolder)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage -reporttypes:'HtmlInline_AzurePipelines;Cobertura'
+      displayName: Create code coverage report
+      
     # Publish code coverage report to the pipeline
     # - task: PublishCodeCoverageResults@1 # using @v2 instead
     #   displayName: 'Publish code coverage'
@@ -52,7 +58,7 @@ stages:
     - task: PublishCodeCoverageResults@2
       displayName: 'Publish code coverage'
       inputs:
-        summaryFileLocation: $(Agent.TempDirectory)/*/coverage.cobertura.xml # using ** instead of * finds duplicate coverage files
+        summaryFileLocation: $(Build.SourcesDirectory)/CodeCoverage/*/coverage.cobertura.xml # using ** instead of * finds duplicate coverage files
 
     - ${{ if eq(parameters.DOTNET_PUBLISH, true) }}:
       - task: DotNetCoreCLI@2

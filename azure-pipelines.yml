@@ -13,6 +13,7 @@ stages:
     solution: '**/*.sln'
     buildPlatform: 'Any CPU'
     buildConfiguration: 'Release'
+    disable.coverage.autogenerate: 'true' # don't regenerate html, use html from my code coverage report command to use my version of reportgenerator
 
   jobs:
   - job: build

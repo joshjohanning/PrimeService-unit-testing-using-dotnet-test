@@ -20,5 +20,12 @@ namespace Prime.Services
             }
             return true;
         }
+        public bool newMethod(int candidate)
+        {
+            int newVar = 1;
+            int otherVar = 2;
+            int mathVar = newVar * otherVar;
+            return true;
+        }
     }
 }
